@@ -10,7 +10,7 @@ const resolvers = {
     
   },
   Mutation: {
-    addBook: async (parent, { bookId, authors, description, image, link, title}) => {
+    addBook: async (parent, { bookId, authors, description, image, link, title, profileId}) => {
 
       let bookData = { bookId: bookId, 
                       authors: authors, 
@@ -18,9 +18,8 @@ const resolvers = {
                       image: image, 
                       link: link, 
                       title: title};
-      let id = "6125c30af67a8e2acaed2e77"
       let newBook = await User.findOneAndUpdate(
-        { _id: id}, 
+        { _id: profileId}, 
         { $push: { savedBooks: bookData  } },
         {
           new: true,
